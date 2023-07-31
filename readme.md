@@ -75,8 +75,24 @@
     - never vs void
         - void can be null but never cannot be null        
 - Fundamentals
+    - The 'let' keyword, used to define 'block' level scope for the declaration
+        - Unlike 'var' in JavaScript, the var declaration is always 'function-scope' or 'module-scope'
+    - Callback Function, syntax enhancements using 'Arrow-Operator' the '=>'
+        - If a function accepts callback function as input parameter, then invoke the method by passing arraow operator as callback
+    - String Interpolation aka Template String
+        - a Multi-line HTML parsed string, recommended instead of string Concatenation
+        - syntax
+            - `${EXPRESSION}`       
 - Data Structures
     - Array
+        - Iterators, the ES 6 optimized loop to read data from collections
+            - Symbol.itartor()
+                - for..of loop
+        - Methods
+            - BAsic methods
+                - push(), pop(),indexOf(), lastIndexOf(), etc.
+            - ES 6 methods
+                - forEach(), filter(), map(), reduce()            
     - String
     - Tuples
 - Object Oriented Programming
