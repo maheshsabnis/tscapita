@@ -67,7 +67,7 @@
     - Undefined, undefined
         - Represents value given to all uninitialized valiable
     - Any, any
-        - The Late Binding (JS Compatibility)     
+        -  The Late Binding (JS Compatibility)    
     - Never, never
         - The Value that will never occur
         - e.g.
