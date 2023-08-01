@@ -92,11 +92,80 @@
             - BAsic methods
                 - push(), pop(),indexOf(), lastIndexOf(), etc.
             - ES 6 methods
-                - forEach(), filter(), map(), reduce()            
+                - forEach(), filter(), map(), reduce()     
+    - SPread Operators, used to buold the Mutatble object in the ES 6+
+    - Function Types With JavaScript (As it is used by TypeScript)
+        - Object-Orieinted JS Definitions
+````javascript
+    // 1. reference functions
+    var obj = function(){
+        this.f1 = function(){...}; // public
+        this.f2 = function(){...}; // public
+        // private
+        function f3(){
+
+        }
+    }
+
+    var o1 = new obj();
+    o1.f1(); o1.f2();
+    o1.f3(); // Error 
+
+    // 2. Close Function, the return a singleton object
+    function MyObject(){
+        // Private definitions
+        function f3(){
+            ...
+        }
+        return {
+            // Public Object Literal
+            f1:function(){...},
+            f2:function(){...},
+            
+        }
+    }
+
+     var o1 = new MyObject();
+    o1.f1(); o1.f2();
+    o1.f3(); // Error 
+````
+
     - String
     - Tuples
 - Object Oriented Programming
+    - All Modern Popular JS Libs and Frwks
     - TypeScript Modularity
+    - The 'class' keyword
+        - Constructor
+            - Either zero argument or parameterized ctor
+            - private, public, or protectd membere access specifiers as ctor parameters
+        - Methods 
+            - methods are public by default
+            - the 'function' keyword is not required
+            - recommended to define return type either void or the type of data returned by the function
+            - No Overloading is supported by default
+                - Instead, define method with same name but different in parameters and then write a single implementation for these methods
+            - variable number of parameters are possible for function usig spread (...)
+        - Properties
+            - get and set properties
+        - Access Specifiers
+            - public (default)
+            - private
+            - protected
+        - Access Modifiers
+            - abstract class
+                - cannot be instantiated
+                - abstract method
+                    - No implementation
+                - If the abstract class has a parameterized constructor, then the derived class MUST also define a constructor with 'super()' call in it which will access the base class constructor.     
+            - the 'extends' keyword is used for derivation
+                - same as server-side  derivations            
+            - static    
+                - Access memebers directly using name of the class
+    - The 'interface' definitions
+        - The 'implemets' keyword 
+    - Generics
+        - Allows to create a template for Implementation for valid TypeScript Types (those are supported only in TypeScript)         
 - Asynchronous Programming
     - Promise
     - async/await
