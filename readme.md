@@ -165,7 +165,28 @@
     - The 'interface' definitions
         - The 'implemets' keyword 
     - Generics
-        - Allows to create a template for Implementation for valid TypeScript Types (those are supported only in TypeScript)         
+        - Allows to create a template for Implementation for valid TypeScript Types (those are supported only in TypeScript)   
+    - Modularity
+        - An approach to create separet objects scross separate files and then loading them thorugh the Bundler  
+            - The Export and Import Objects
+                - These objects are used to 'export' 'the type' from one file and these types can be used in other file  using 'import'    
+                - This uses 'moduleResolution' as 'nodejs' on server-side
+                    - This uses the Node.js file module to look, load, and cache file so that it can be used on server
+                    - This is a module standard in all JS Libraries and Frameworks
+                - Where as the 'MODULE-BUNDLER' MUST be used to load 'a megred transpiled file' on Client Side in Browser    
+                    - The 'webpack' a module bundler tool
+                        - Uses Various Modulde Loaders for
+                            - Loading Files e.g. js, ts, jsx, tsx, css, scss, sass, img, etc. using their loader-engines
+                        - Validate all files
+                        - Transpile these files
+                        - Merge these files
+                        - bundle it    
+                    - Packages used for Module Loader and Bundling
+                        - webpack, webpack-cli, webpack-dev-server
+                        - ts-loader
+                        - html-webpack-plugin 
+                        - css-loader
+                    - npm install --save-dev  webpack webpack-cli webpack-dev-server ts-loader  html-webpack-plugin    
 - Asynchronous Programming
     - Promise
     - async/await
