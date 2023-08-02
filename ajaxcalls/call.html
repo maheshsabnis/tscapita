@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./call.js"></script>
+    <script>
+        window.onload = function(){
+            /*var ds = new DataAccess();
+            console.log('On Page');
+            var categories = ds.getCategorires();
+            console.log(`Categories = ${JSON.stringify(categories)}`);
+            console.log('Page Done');*/;
+
+            var ds = new DataAccessPromise();
+            console.log('On Page');
+            // Lets Subscribe to the promise
+           /* ds.getCategorires()
+            .then((response)=>{
+                categories = response;
+                console.log(`Success ${categories}`);
+            })
+            .catch((error)=>{
+                console.log(`Failed ${error}`);
+            });*/
+
+            ds.getCategoriresAsync()
+            .then((response)=>{
+                categories = response;
+                console.log(`Success ${JSON.stringify(categories)}`);
+            })
+            .catch((error)=>{
+                console.log(`Failed ${error}`);
+            });
+
+            document.getElementById('btnsave')
+                .addEventListener('click', function(){
+                    let cat = new Category(3001, 'MyCat-3001',2000);
+                    ds.postCategoryAsync(cat).then((response)=>{
+                        console.log(`Saved Success ${JSON.stringify(response)}`);
+                    })
+                    .catch((error)=>{
+                        console.log(`Failed ${error}`);
+                    });
+        
+                },false);
+
+
+                document.getElementById('btnupdate')
+                .addEventListener('click', function(){
+                    let cat = new Category(3001, 'MyCat-3001-up',2130);
+                    ds.putCategoryAsync(3001,cat).then((response)=>{
+                        console.log(`Saved Success ${JSON.stringify(response)}`);
+                    })
+                    .catch((error)=>{
+                        console.log(`Failed ${error}`);
+                    });
+        
+                },false);
+
+                document.getElementById('btndelete')
+                .addEventListener('click', function(){
+                     
+                    ds.deleteCategoryAsync(3001).then((response)=>{
+                        console.log(`Deleted ${JSON.stringify(response)}`);
+                    })
+                    .catch((error)=>{
+                        console.log(`Failed ${error}`);
+                    });
+        
+                },false);
+
+        };
+    </script>
+</head>
+<body>
+    <button id="btnsave">Save</button>
+    <hr/>
+    <button id="btnupdate">Update</button>
+    <hr/>
+    <button id="btndelete">Delete</button>
+</body>
+</html>

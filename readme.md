@@ -188,10 +188,127 @@
                         - css-loader
                     - npm install --save-dev  webpack webpack-cli webpack-dev-server ts-loader  html-webpack-plugin    
 - Asynchronous Programming
+    - XmlHttpRequest Object
+        - Written for Async Communication to Server to fetch data / Write Data based on 'Event-Subscription' model
+        - Event-Subscription
+            - The caller MUST first subscribe to the expected result before initiating the call
+    - $.ajax() 
+        - jQuery 3.x+
+            - the 'xhr' object
+                - callback methods         
     - Promise
+        - The ES 6 Ready-to-Use Class that Encapsulats all Async Opertaions
+            - Provides Facility for following
+                - A Simple Subscription Model
+                - Built-In Error Handling
+                - Chain of Async Calls (Define Use-Case) 
+                - Parallel Async Calls (Define USe-Case)
+        - Promise Baserd Object Models
+            - $.ajax()
+                - Enhanced for Xhr Object, that uses Promise Object        
+            - $.http()
+                - By Angular.js, purely re-written for Promise
+            - fetch()
+                - A Pure Promise object by ES 6 
+        - Promise<T> class
+            - T represents the type of Response that will be returned after the successful execution aka Resolve
+            - Constructor
+                - Promise<T>(Resolve,Reject);
+                    - Resolve: The Success Callback
+                    - Reject: The Faild Callback
+            - Methods
+                - then()
+                    - Return an another promise object, that helps for Chain of Async Operations
+                - catch()
+                    - Used to handle the Failure / Rejection
+                - all([P1,P2,....P10])
+                    - Used for Parallel Async Calls   
+                    - Accepts an array of Promise Objects
+                    - At-Max 10 Calls  
+                        - P1,P2,...P10 are individual calls those are Promise objects   
+        - axios
+            - A Powerfull Promise based Library for handling Async Calls
+            - Extensiveluy used in React Apps as well as Node.js apps                                   
+            - npm isntall axios
     - async/await
+        - async: A Method Modifier that represnts that the methos performig an async operations and returns a Promise object
+        - await: A Statement Modifier that represent the acrual asynchronous operation
+            - Await always peforms an auto-subscription to Promise and received the resolved response 
 - Using TypeScript for App Development
     - HTML Integration
     - Module Bundlers
     - Using it with React.js
     - Unit Testing                   
+
+# React.js
+
+- npx create-react-app my-app --template typescript
+
+- React Component with Type Definitions
+- Object Model
+    - The 'react', the base package, this has 'Component' class and all hooks
+    - The 'react-dom', that packae that is used to mount component on UI in browser
+    - The 'TSX' (JSX), the typescript extension compiler to compile React apps developed using TypeScript
+        - COmpile HTML elements with its attributes
+    - Component
+        - Function that returns HTML DOM
+        - Define a 'state', a property based on which the DOM will change
+        - Behaviors, method(s) those will be bound to the HTML DOM Elements so that tey can be invoked when an event is raised
+    - Component is Reusable base don following guidelines
+        - Plan for UI
+        - IMP: Decide the local data as well as data received from the parent to the component      
+        - Decide bahavior of the component
+            - The local methods those will process the local data (state) that will modify the DOM
+            - Methods, those will be emitted from the component to its parent
+    - Statefull components
+        - Component that accepts data from its parent
+            - Implemented using the 'props', an 'immutable' object, that will be keep changing with new properties and data in it
+               - In TypeScript, the props is implemented using 'interface' type, this interface defines properties those are shared across components   
+               - The props will be live till the react app is running in the browser    
+            - The local state object
+                - a 'mutable' object, the object that will be changed based on events on DOM elements
+                - the local state is bound with DOM elements
+                - The state for mounted component on DOM will be killed when the component is unmounted from DOM
+````javascript
+    function MyComponent(){
+        return (<HTML/>)
+    }
+    /*OR*/
+
+    const MyComponent=()=>{
+         return (<HTML/>)
+    }
+
+    /* OR */
+
+    const MyComponent=()=({
+        <HTML/>
+    })
+
+````
+    - Hooks
+        - Functions those are used for following
+            - state definition
+                - useState()
+````javascript
+    const [x, setX] = useState(0);
+    // x is state property
+    // 0 is  initial value of x
+    // setX, an Action that will be dispatched (SetDispatchAction), that will be responsible to update thate state
+
+````
+            - data sharing across components
+                - useContext()
+            - resource intensive operations e.g. HTTP Calls
+                - useEffect()
+            - state transition, effective when the state updates takes palce based on external logic
+                - useReducer()
+            - DOM Access based on reference of DOM 
+                - useRef()
+            - Invoking a method from the Child Component
+                - useCallback()
+            - Cahcing the large calculated value in memory
+                - useMemo()
+        - Hooks are always accessible at component level
+            - We cannot access a standard hook inside any other method in component
+            - We can create custom hook (a function), and in the custom hook we can access standard hook        
