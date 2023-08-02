@@ -20,3 +20,8 @@ The character—also known by the code number 007 (pronounced "double-oh-seven")
     - This Map object should store information of all Employee type like Manager, Consultant, Engineers.
 2. You need to add EngineerLogic class Derived from the EmployeeLogic Class
 3. Modify the IncomeCalculator class to extract Salary of a Perticular Employee based on the EmpNo         
+
+
+# Date: 02-August-2023
+
+1. Implement a Simple Calculator having UI like windows Calculator using React Component
