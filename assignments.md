@@ -25,3 +25,7 @@ The character—also known by the code number 007 (pronounced "double-oh-seven")
 # Date: 02-August-2023
 
 1. Implement a Simple Calculator having UI like windows Calculator using React Component
+
+# Date: 03-Aug-2023
+
+1. Refer the ProductComponent and write a test in 'save' button click to check when the click event is fired the new row is added into the HTML table showing the newly added product information 

@@ -312,3 +312,115 @@
         - Hooks are always accessible at component level
             - We cannot access a standard hook inside any other method in component
             - We can create custom hook (a function), and in the custom hook we can access standard hook        
+# React's Composable Apps
+- The UI is composed using various components
+- If the same UI is used across multiple components then consider  creating a custom reusable components
+    - Make sure that following needs are carefully satisfied or planned while creating reusable component
+        - UI Requirements
+        - Properties those are send to re-usable component from parent
+        - Properties those are emitted to parent by the child
+        - Events (behaviroes) when the data will be emitted to parent component
+- Data Communication (Sharing) strategies across components
+    - Using props
+        - For entire React app, loaded on UI thread for all components 
+    - The 'React.Context' object
+        - provides a 'createContext()' method
+            - Defines a schema of data and callback functions (aka Dispath functions) using whcih a parent can communicate only with the specific child and vise versa
+        - The 'Context' object with following Object properties
+            - Provider
+                - Used by parent to provide the data to child using 'value' object
+                    - The 'value' is a complex JSON object
+                        - e.g. value ={{{}}}
+            - Consumer
+                - Used by the child component to subscribe to the data send by parent
+                - The child component uses 'useContext()' hook             
+    - Handling HTTP Calls
+        - Do you want to make the call and update the state on mounting of the component?
+            - Make a use of 'useEffect()' hook to manage external calls and (IMP) make sure that the useEffect() stops when the state is committed 
+            - useEffect(()=>{
+                /* Logic for Calls and State Updates
+                  This will be executed after the mounting
+                  this may cause the state updates
+                  The state update causes the re-rendering  
+                 */
+                 return()=>{
+                    /* The logic that will be executed when the component is unmounted */
+                 }
+            },[DEPENDENCY-PARAMETER])
+            - useEffect() hook combines 'componentDidMount()' and 'componentWIllUnMount()' lifecycle hook metods of the class component
+            - DEPENDENCY-PARAMETER
+                - AN empty array, that indicates that the state is changed and not the useEffct() can stop its execution
+                    - This is async execution for state update
+                        - Since the state update is async, the useEffect() may have 2 times execution before stopping   
+        - Do you want the call to be executed on explicit event?                        
+
+# Jest Testing
+- JS Framework for JS testing, works with
+    - React, Angular, Vue, Node.js
+    - Bable and TypeScript Projects
+- Jest Adavantages
+    - Less Configration aka Zero Confguration
+        - Provides the default JS Intergation to test JS / TS Code, so no explicit cofig is needed
+        - Since most JS projects uses Jest, theese projects provides default config settigs and object model for testing e.g. React CRA Template has the default Jest Integration
+        - Create the 'jest.config.ts' file with settings
+            - ts/tsx extension detection
+            - codeCoverage
+            - Testing ENv
+    - Im-Memory DOM Generation instead of Browser's  DOM
+        - DOM Snapshot and Detect Changes based on Events or Databinding changes
+    - each test is iolatated for running
+        - Parallel Running for tests
+        - This is perfoemance advantage
+    - jest apis
+        - it(), expect(), test(), etc.
+- Unit Test
+    - Arrange
+        - Collect all dependencies for test to execute
+        - Define an expected result
+    - Act
+        - Invoke the method / function to test
+            - Receive the actual result
+        - Trigger an action (event) on DOM using code
+            - Monitor the DOM changes based on the method executed based on event    
+    - Expect   
+        - Compare Actual Result with Expected Result
+- Testing only the TypeScript Code
+    - Install Jest Globally
+        - npm install --global jest
+    - Locally required packages
+        - @types/jest
+            - jest intellisense object for writing test
+            - describe(), it(), test(), expect(), etc.    
+        - jest
+            - Jest framework with base object model
+        - ts-jest
+            - TypeScript + Jest integration
+            - use tsconfig.json to load and invoke the ts file and test it
+        - ts-node     
+            - Execute the jest test inside the Node.js process
+    - Generate jest.config.ts  file                      
+        - jest --init
+            - This will contain test configuration  
+    - Create test files
+        - filename.test.ts                         
+- For React app
+    - "@testing-library/jest-dom": "^5.17.0",
+        - Performs same operations those are performed by ReactDom.render() in browser
+        - USes ReactDom.render() to create a DOM in memory
+    - "@testing-library/react": "^13.4.0",
+        - Test Eco-System for React Apps provided by react CRA template (Recommended to use)
+        - Internally uses Jest
+        - render() and screen objects
+            - render(): In-Memory Rendering
+            - screen: The DOM in memory
+                - Used to query to HTML Elements for Reading values as well as dispatching events 
+    - "@testing-library/user-event": "^13.5.0",     
+        - The 'fireEvent'
+            - USed to fire an event on DOM       
+- Facts, regarding React Versions
+    - React 16, 17
+        - react-dom/test-utils
+            - act() object for invoking the method
+        - The 'dispatchEvent()' method of the JavaScript DOM object model for firing event
+    - React 18
+        - The createRoot() is needed for creating a root element instead of ReactDOM.render() method                         

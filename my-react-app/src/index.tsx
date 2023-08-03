@@ -5,6 +5,10 @@ import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import SimpleComponent from './components/simplecomponent/simplecomponent';
+import ProductComponent from './components/productcomponent/productcomponent';
+import ToggleComponent from './components/useeffectLifecycle/toggelcomponent';
+import CategoryComponent from './components/categoryhttpcomponent/categorycomponent';
+import LoginComponent from './components/testcomponent/logincomponent';
 /* Read the index.html from the 'public' folder and local the <div> elemenwt with 'id' as 'root'*/
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,7 +21,7 @@ root.render(
   <React.StrictMode>
     {/* The Component */}
     {/* <App msg={message}/> */}
-    <SimpleComponent/>
+    <ProductComponent></ProductComponent>
   </React.StrictMode>
 );
 
